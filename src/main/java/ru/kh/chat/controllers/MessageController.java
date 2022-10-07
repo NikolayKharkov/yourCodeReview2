@@ -1,5 +1,6 @@
 package ru.kh.chat.controllers;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class MessageController {
         return result;
     }
 
-    @ExceptionHandler(EntityNotFoundException.class)
+    @ExceptionHandler({EntityNotFoundException.class, ConstraintViolationException.class})
     public ResponseEntity<Map<String, String>> handleEntityNotFoundException() {
         return new ResponseEntity<>(Map.of("id", "Input chat or user id not exist."),
                 HttpStatus.BAD_REQUEST);

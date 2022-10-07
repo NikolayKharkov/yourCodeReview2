@@ -67,7 +67,7 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON);
         MockHttpServletResponse response = mvc.perform(requestBuilder).andReturn().getResponse();
         assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatus());
-        assertEquals("[{\"username\":\"Username can't be empty.\"},{\"username\":\"Username can't be null.\"}]",
+        assertEquals("[{\"username\":\"Username can't be null.\"},{\"username\":\"Username can't be empty.\"}]",
                 response.getContentAsString());
     }
 

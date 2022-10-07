@@ -1,12 +1,15 @@
 package ru.kh.chat.dto.messagesDto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class MessageDto {
 
-    private long chatId;
+    @NotNull(message = "Chat id can't be null")
+    private Long chatId;
 
-    private long author;
+    @NotNull(message = "Author id can't be null")
+    private Long author;
 
     @NotBlank(message = "Text can't be empty")
     private String text;
@@ -14,11 +17,17 @@ public class MessageDto {
     public MessageDto() {
     }
 
+    public MessageDto(Long chatId, Long author, String text) {
+        this.chatId = chatId;
+        this.author = author;
+        this.text = text;
+    }
+
     public long getChatId() {
         return chatId;
     }
 
-    public void setChatId(long chatId) {
+    public void setChatId(Long chatId) {
         this.chatId = chatId;
     }
 
@@ -26,7 +35,7 @@ public class MessageDto {
         return author;
     }
 
-    public void setAuthor(long author) {
+    public void setAuthor(Long author) {
         this.author = author;
     }
 

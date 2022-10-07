@@ -1,8 +1,11 @@
 package ru.kh.chat.dto.chatsDto;
 
+import javax.validation.constraints.NotNull;
+
 public class ChatIdDto {
 
-    private long id;
+    @NotNull(message = "Chat id can't be null")
+    private Long id;
 
     public ChatIdDto() {
     }

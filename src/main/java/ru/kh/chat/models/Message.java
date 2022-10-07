@@ -1,5 +1,6 @@
 package ru.kh.chat.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "messages")
+@JsonIgnoreProperties({"chat"})
 public class Message {
 
     @Id
@@ -24,7 +26,7 @@ public class Message {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User author;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_id", referencedColumnName = "id")
     private Chat chat;
 
@@ -43,12 +45,27 @@ public class Message {
         this.chat = chat;
     }
 
+    public Message(long id, String text, User author, Chat chat) {
+        this.id = id;
+        this.text = text;
+        this.author = author;
+        this.chat = chat;
+    }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getText() {
@@ -75,26 +92,16 @@ public class Message {
         this.chat = chat;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Message message = (Message) o;
-        return Objects.equals(text, message.text)
-                && Objects.equals(author, message.author)
-                && Objects.equals(chat, message.chat);
+        return id == message.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(text, author, chat);
+        return Objects.hash(id);
     }
 }

@@ -1,6 +1,5 @@
 package ru.kh.chat.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -45,9 +44,25 @@ public class Chat {
     public Chat() {
     }
 
+    public Chat(String name) {
+        this.name = name;
+    }
+
     public Chat(long id) {
         this.id = id;
     }
+
+    public Chat(long id, String name, Set<User> users) {
+        this.id = id;
+        this.name = name;
+        this.users = users;
+    }
+
+    public Chat(String name, Set<User> users) {
+        this.name = name;
+        this.users = users;
+    }
+
 
     public long getId() {
         return id;

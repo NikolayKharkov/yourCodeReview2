@@ -43,7 +43,7 @@ public class MessageService {
                     "Input chat not exist");
         }
         Chat chat = chatOptional.get();
-        messageRepository.save(message);
+        message = messageRepository.save(message);
         chat.getMessages().add(message);
         return message.getId();
     }

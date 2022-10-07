@@ -5,10 +5,19 @@ import java.util.List;
 
 public class ChatDto {
 
+    @NotNull(message = "Chat name can't be null")
     private String name;
 
     @NotNull(message = "List of users can't be null")
     private List<Long> users;
+
+    public ChatDto() {
+    }
+
+    public ChatDto(String name, List<Long> users) {
+        this.name = name;
+        this.users = users;
+    }
 
     public String getName() {
         return name;
