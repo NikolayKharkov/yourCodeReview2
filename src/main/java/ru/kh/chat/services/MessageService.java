@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import ru.kh.chat.dto.chatsDto.ChatIdDto;
 import ru.kh.chat.dto.messagesDto.MessageDto;
 import ru.kh.chat.models.Chat;
 import ru.kh.chat.models.Message;
@@ -12,6 +13,7 @@ import ru.kh.chat.models.User;
 import ru.kh.chat.repositories.ChatRepository;
 import ru.kh.chat.repositories.MessageRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,6 +28,10 @@ public class MessageService {
         this.chatRepository = chatRepository;
     }
 
+    public List<Message> getMessagesByChat(ChatIdDto chatIdDto) {
+        return messageRepository.findAllByChatOrderByCreatedAtAsc(new Chat(chatIdDto.getId()));
+    }
+
     @Transactional
     public long saveMessage(MessageDto messageDto) {
         Message message = new Message(messageDto.getText(),
@@ -34,12 +40,11 @@ public class MessageService {
         Optional<Chat> chatOptional = chatRepository.findById(messageDto.getChatId());
         if (chatOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "Test");
+                    "Input chat not exist");
         }
         Chat chat = chatOptional.get();
         messageRepository.save(message);
         chat.getMessages().add(message);
-        chatRepository.save(chat);
         return message.getId();
     }
 }

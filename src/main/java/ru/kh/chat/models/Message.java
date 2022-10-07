@@ -24,7 +24,7 @@ public class Message {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User author;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "chat_id", referencedColumnName = "id")
     private Chat chat;
 
@@ -51,14 +51,6 @@ public class Message {
         this.id = id;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public String getText() {
         return text;
     }
@@ -81,6 +73,14 @@ public class Message {
 
     public void setChat(Chat chat) {
         this.chat = chat;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

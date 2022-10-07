@@ -4,6 +4,9 @@ public class ChatIdDto {
 
     private long id;
 
+    public ChatIdDto() {
+    }
+
     public ChatIdDto(long id) {
         this.id = id;
     }
