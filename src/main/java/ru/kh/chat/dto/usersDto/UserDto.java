@@ -1,4 +1,4 @@
-package ru.kh.chat.dto;
+package ru.kh.chat.dto.usersDto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

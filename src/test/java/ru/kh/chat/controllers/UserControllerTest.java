@@ -16,8 +16,8 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.kh.chat.dto.UserDto;
-import ru.kh.chat.dto.UserIdDto;
+import ru.kh.chat.dto.usersDto.UserDto;
+import ru.kh.chat.dto.usersDto.UserIdDto;
 import ru.kh.chat.services.UserService;
 
 @RunWith(SpringRunner.class)

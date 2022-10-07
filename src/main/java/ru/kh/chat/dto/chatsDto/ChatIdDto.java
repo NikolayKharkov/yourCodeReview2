@@ -1,10 +1,10 @@
-package ru.kh.chat.dto;
+package ru.kh.chat.dto.chatsDto;
 
-public class UserIdDto {
+public class ChatIdDto {
 
     private long id;
 
-    public UserIdDto(long id) {
+    public ChatIdDto(long id) {
         this.id = id;
     }
 
@@ -15,4 +15,5 @@ public class UserIdDto {
     public void setId(long id) {
         this.id = id;
     }
+
 }

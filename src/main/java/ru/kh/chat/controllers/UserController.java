@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import ru.kh.chat.dto.UserDto;
-import ru.kh.chat.dto.UserIdDto;
+import ru.kh.chat.dto.usersDto.UserDto;
+import ru.kh.chat.dto.usersDto.UserIdDto;
 import ru.kh.chat.services.UserService;
 
 import javax.validation.Valid;

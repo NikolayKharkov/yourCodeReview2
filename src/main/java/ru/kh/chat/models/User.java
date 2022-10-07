@@ -31,6 +31,10 @@ public class User {
 
     }
 
+    public User(long id) {
+        this.id = id;
+    }
+
     public User(String username) {
         this.username = username;
     }
@@ -69,11 +73,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username);
+        return id == user.id && Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username);
+        return Objects.hash(id, username);
     }
 }

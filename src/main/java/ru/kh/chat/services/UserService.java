@@ -2,7 +2,8 @@ package ru.kh.chat.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.kh.chat.dto.UserDto;
+import org.springframework.transaction.annotation.Transactional;
+import ru.kh.chat.dto.usersDto.UserDto;
 import ru.kh.chat.models.User;
 import ru.kh.chat.repositories.UserRepository;
 
@@ -16,6 +17,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public long saveUser(UserDto userDto) {
         return userRepository.save(new User(userDto.getUsername())).getId();
     }
